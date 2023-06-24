@@ -1,6 +1,7 @@
-const guess = [];
-guess.length = 4;
-const playerGuess= {
+let CURRENT_GUESS = 1;
+let CURRENT_GUESS_ARRAY = `guess${CURRENT_GUESS}`;
+
+const PLAYER_GUESS= {
 	guess1 : [],
 	guess2 : [],
 	guess3 : [],
@@ -14,20 +15,14 @@ const playerGuess= {
 }
 
 ///*----- constants -----*/
-//const playAgainBtn = document.querySelector("button")
 
-//const greenBtn = document.getElementById("green_btn")
-//const yellowBtn = document.getElementById("yellow_btn")
-//const pinkBtn = document.getElementById("pink_btn")
-//const redBtn = document.getElementById("red_btn")
-//const blueBtn = document.getElementById("blue_btn")
-//const purpleBtn = document.getElementById("purple_btn")
+
 
 
 
 ///*----- app's state (variables) -----*/
-//const colors = ["red", "green","yellow", "orange", "blue", "pink"];
-//const secretCombo = [];
+const colors = ["red", "green","yellow", "purple", "blue", "pink"];
+const secretCombo = [];
 
 ///*----- cached element references -----*/
 //let winner;;
@@ -39,43 +34,22 @@ const playerGuess= {
 ///*----- functions -----*/
 //initial()
 
-//function initial(){
-//	secretColors()
-//	clearBoard()
-//	clearMessage()
-//	generateSecretCode()
-//	render()
+function initial() {
+	generateSecretCode();
+	//clearBoard()
+	//clearMessage()
+	//render()
+}
+//Generate a random secret color code
+function generateSecretCode(){
+for(let i = 0; i< 4; i++){
+	const randomColors = Math.floor(Math.random() *colors.length)
+	secretCombo.push(colors[randomColors])     
+	}
+	return secretCombo;
+}
+console.log(generateSecretCode())
 
-//}
-
-//function generateSecretCode(){
-//for(let i = 0; i< 4; i++){
-//	const randomColors = Math.floor(Math.random() *colors.length)
-//	secretCombo.push(colors[randomColors])     
-//	}
-//	return secretCombo;
-//}
-
-//function compareCodes(secretCode, guess) {}
-
-//function getPlayerGuess(){
-////collect and compare code
-//}
-
-//function playGame() {}
-
-
-//function handleChoice(evt) {
-//  // Guards (no nothing unless one of the three buttons were clicked)
-//  if (evt.target.tagName !== 'BUTTON') return;
-//  //Player has made a choice
-//  results.p = evt.target.innerText.toLowerCase();
-//  //compute a random choice for the computer
-//  results.c = getRandomRPS();
-//  winner = getWinner();
-//  scores[winner] += 1;
-//  render();
-//};
 
 //Get the ID of the button
 const buttons = document.querySelectorAll("button");
@@ -84,45 +58,51 @@ buttons.forEach(function(button) {
   button.addEventListener("click", handleColor);
 });
 
-function handleColor(evt) {
-  console.log(evt.target.id);
-}
+
 //End Getting ID of button
 
-//Get the ID of button and push it to an array that stops at the length of [3]
-const firstArray = [];
-
-function handleColor(evt) {
-  const colorClick = evt.target.id;
-  if(firstArray.length <= 3){
-    firstArray.push(colorClick)
-  } else {
-   return 
-  } 
-  console.log(firstArray)
-}
-
-//End of array.push for ID
 
 //Modify Object selfsufficiently
-let CURRENT_GUESS = 1;
-let CURRENT_GUESS_ARRAY = `guess${CURRENT_GUESS}`;
-
-Object.keys(playerGuess).forEach(function(index) {
-    console.log(index)
-});
 
 function handleColor(evt) {
   const colorClick = evt.target.id;
-  if(playerGuess[CURRENT_GUESS_ARRAY].length <= 3){
-    playerGuess[CURRENT_GUESS_ARRAY].push(colorClick);
+  if(PLAYER_GUESS[CURRENT_GUESS_ARRAY].length <= 3){
+    PLAYER_GUESS[CURRENT_GUESS_ARRAY].push(colorClick);
+    if(PLAYER_GUESS[CURRENT_GUESS_ARRAY].length === 4){
+      compareGuess()
+    }
   } else {
     CURRENT_GUESS++
     CURRENT_GUESS_ARRAY = `guess${CURRENT_GUESS}`;
-    return 
   } 
   console.log(CURRENT_GUESS_ARRAY)
   console.log(CURRENT_GUESS)
-  console.log(playerGuess)
+  console.log(PLAYER_GUESS)
+  console.log(secretCombo)
 }
 //END modify object
+
+//Compare Guess 
+function compareGuess() {
+  const currentGuessArray = PLAYER_GUESS[CURRENT_GUESS_ARRAY];
+  let perfectMatches = 0;
+  let colorMatches = 0;
+  for (let i = 0; i < currentGuessArray.length; i++) {
+    if (currentGuessArray[i] === secretCombo[i]) {
+      perfectMatches++; 
+    } if (secretCombo.includes(currentGuessArray[i])) {
+      colorMatches++;
+    }
+  console.log(`Perfect matches: ${perfectMatches}`);
+  console.log(`Colors matches: ${colorMatches}`);
+  //  console.log(PLAYER_GUESS,"player guess");
+  }
+  if(perfectMatches === 4){
+    console.log("winner")
+    buttons.forEach(function(button) {
+  button.removeEventListener("click", handleColor);
+});
+    return
+  } 
+}
+//END compare guess

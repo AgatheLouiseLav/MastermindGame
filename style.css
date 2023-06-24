@@ -22,7 +22,7 @@ body{
 	gap:10px;
 	color:var(--clr-white);
 	font-family: 'Koulen', cursive;
-/*font-family: 'Roboto', sans-serif;*/
+
 }
 
 section{
@@ -46,6 +46,19 @@ aside{
 	/*border:2px solid red;*/
 	width:50%;
 }
+h1{
+	font-size: 3rem;
+	letter-spacing: 3px; 
+	/*border: 1px solid red;*/
+}
+h4{
+	/*border: 1px orange solid;*/
+	font-size: 1rem;
+	letter-spacing: 2px; 
+}
+p{
+font-family: 'Roboto', sans-serif;
+}
 
 .combos{
 	/*border:2px solid orange;*/
@@ -57,12 +70,12 @@ aside{
 	box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.35);
 	margin:20px auto;
 	height: 90px;
-	width:70%;
+	width:80%;
 	opacity: 60%;
 }
 .color_circle{
-	width: 50px;
-	height: 50px;
+	width: 60px;
+	height: 60px;
 	border-radius: 50%;
 	background-color: #ECF8F9;
 }
@@ -70,12 +83,26 @@ aside{
 	width: 70px;
 	height: 70px;
 	/*border: 2px solid orange;*/
-	background-color: black;
+	background-color: var(--clr-grey-board);
+	border-radius: 15px;
 	opacity: 100%;
+	display: grid;
+	grid-template-columns: 30px 30px;
+	align-items: center;
+	justify-content: center;
+}
+.match{
+	margin:0 auto;
+	/*border: 1px solid orange;*/
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background-color: var(--clr-dark-blue);
 }
 
 .choice{
 	display: inline-block;
+	justify-content: center;
 	/*border: 2px solid green;*/
 	width: 260px;
 }
@@ -87,7 +114,28 @@ button{
 	border-radius: 50%;
 	background-color: #ECF8F9;
 	border: none;
+	cursor: pointer;
 }
-span{
+button:hover{
+	background-color: #526D82;
+	opacity: 80%;
+}
+button#green{
+	background-color: var(--clr-green);
+}
+button#yellow{
+	background-color: var(--clr-yellow);
+}
+button#pink{
+	background-color: var(--clr-pink);
+}
+button#red{
+	background-color: var(--clr-red);
+}
+button#blue{
+	background-color: var(--clr-blue);
+}
+button#purple{
+	background-color: var(--clr-purple);
+}
 
-}
