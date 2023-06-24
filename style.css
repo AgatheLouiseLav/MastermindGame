@@ -29,15 +29,12 @@ section{
 	padding: 20px;
 	border-radius: 15px;
 	background-color: var(--clr-grey-board);
-	border:2px solid red;
-	width: 55%;
+	/*border:2px solid red;*/
+	width: 50%;
 	height: 45rem;
 	overflow-y: scroll;
 	scroll-behavior: smooth;
 	-ms-overflow-style: none;
-  	scrollbar-width: none;
-	scrollbar-color: red orange;
-  scrollbar-width: transparent;
    /*overflow-y: hidden;*/
 }
 
@@ -46,8 +43,8 @@ aside{
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	border:2px solid red;
-	width:45%;
+	/*border:2px solid red;*/
+	width:50%;
 }
 
 .combos{
@@ -59,18 +56,38 @@ aside{
 	border-radius: 15px;
 	box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.35);
 	margin:20px auto;
-	height: 120px;
-	width: 80%;
+	height: 90px;
+	width:70%;
 	opacity: 60%;
 }
 .color_circle{
-	width: 80px;
-	height: 80px;
+	width: 50px;
+	height: 50px;
 	border-radius: 50%;
 	background-color: #ECF8F9;
 }
 .feedback{
-	width: 50px;
-	height: 50px;
-	border: 2px solid orange;
+	width: 70px;
+	height: 70px;
+	/*border: 2px solid orange;*/
+	background-color: black;
+	opacity: 100%;
+}
+
+.choice{
+	display: inline-block;
+	/*border: 2px solid green;*/
+	width: 260px;
+}
+
+button{
+	margin: 10px;
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	background-color: #ECF8F9;
+	border: none;
+}
+span{
+
 }
