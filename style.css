@@ -65,7 +65,7 @@ font-family: 'Roboto', sans-serif;
 	margin:20px auto;
 	height: 90px;
 	width:80%;
-	opacity: 60%;
+	/*opacity: 60%;*/
 }
 .color_circle{
 	width: 60px;
@@ -90,11 +90,17 @@ font-family: 'Roboto', sans-serif;
 	height: 20px;
 	border-radius: 50%;
 }
-
 .choice{
 	display: inline-block;
 	justify-content: center;
 	width: 260px;
+}
+
+#m-white{
+	background-color: var(--clr-white);
+}
+#m-red{
+	background-color: var(--clr-dark-red);
 }
 
 button{

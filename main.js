@@ -24,8 +24,8 @@ const colors = ["red", "green","yellow", "purple", "blue", "pink"];
 const secretCombo = [];
 const matchElm = document.getElementsByClassName("match");
 const buttons = document.querySelectorAll("button");
-let guessCombo ;
-let guessFeedback ;
+let guessCombo;
+let guessFeedback;
 
 ///*----- cached element references -----*/
 //let winner;;
@@ -80,48 +80,35 @@ function handleColor(evt) {
 
 //Compare Guess 
 function compareGuess() {
+  guessFeedback = document.querySelectorAll(`#guess-${CURRENT_GUESS}>div.feedback>div.match`);
   const currentGuessArray = PLAYER_GUESS[CURRENT_GUESS_ARRAY];
   let perfectMatches = 0;
   let colorMatches = 0;  
   for (let i = 0; i < currentGuessArray.length; i++) {
     if (currentGuessArray[i] === secretCombo[i]) {
       perfectMatches++; 
+      guessFeedback[i].setAttribute("id", "m-red");
     } if (secretCombo.includes(currentGuessArray[i])) {
       colorMatches++;
+      //guessFeedback[i].setAttribute("id", "m-white");
     }  
   console.log(`Perfect matches: ${perfectMatches}`);
   console.log(`Colors matches: ${colorMatches}`);
-  console.log(PLAYER_GUESS,"**");
-  displayFeedback()
   }
   if(perfectMatches === 4){
     console.log("winner")
     buttons.forEach(function(button) {
     button.removeEventListener("click", handleColor);
 });
-    return
   } 
 }
 //END compare guess
 
 //Get the ID of the combo html to render the colors of the game
 function displayColor() {
-  guessCombo[0].setAttribute("id", `${PLAYER_GUESS[CURRENT_GUESS_ARRAY][0]}`)
-  guessCombo[1].setAttribute("id", `${PLAYER_GUESS[CURRENT_GUESS_ARRAY][1]}`)
-  guessCombo[2].setAttribute("id", `${PLAYER_GUESS[CURRENT_GUESS_ARRAY][2]}`)
-  guessCombo[3].setAttribute("id", `${PLAYER_GUESS[CURRENT_GUESS_ARRAY][3]}`)
- console.log(guessCombo, "guessCombo")
- console.log(CURRENT_GUESS)
+  guessCombo[0].setAttribute("id", `${PLAYER_GUESS[CURRENT_GUESS_ARRAY][0]}`);
+  guessCombo[1].setAttribute("id", `${PLAYER_GUESS[CURRENT_GUESS_ARRAY][1]}`);
+  guessCombo[2].setAttribute("id", `${PLAYER_GUESS[CURRENT_GUESS_ARRAY][2]}`);
+  guessCombo[3].setAttribute("id", `${PLAYER_GUESS[CURRENT_GUESS_ARRAY][3]}`);
 }
 // End of displaying colors in Game
-
-//Display feeback
-function displayFeedback() {
-  guessFeedback = document.querySelectorAll(`#guess-${CURRENT_GUESS}>div.feedback>div.match`);
-  console.log(guessFeedback, "feedback is here")
-  for (let i = 0; i < matchElm.length; i++) {
-    matchElm[i].style.backgroundColor = "pink";
-  }
-  //guessFeedback.appendChild.setAttribute("id", "puple");
-}
-//End display feedback
