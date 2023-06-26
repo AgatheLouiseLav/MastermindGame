@@ -88,12 +88,10 @@ function compareGuess() {
     if (currentGuessArray[i] === secretCombo[i]) {
       perfectMatches++; 
       guessFeedback[i].setAttribute("id", "m-red");
-    } if (secretCombo.includes(currentGuessArray[i])) {
+    } else if (secretCombo.includes(currentGuessArray[i]) && !perfectMatches[i]) {
       colorMatches++;
-      //guessFeedback[i].setAttribute("id", "m-white");
+      guessFeedback[i].setAttribute("id", "m-white");
     }  
-  console.log(`Perfect matches: ${perfectMatches}`);
-  console.log(`Colors matches: ${colorMatches}`);
   }
   if(perfectMatches === 4){
     console.log("winner")
