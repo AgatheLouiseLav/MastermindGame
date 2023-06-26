@@ -1,6 +1,8 @@
-let CURRENT_GUESS = 1;
-let CURRENT_GUESS_ARRAY = `guess${CURRENT_GUESS}`;
-
+///*----- constants -----*/
+const colors = ["red", "green","yellow", "purple", "blue", "pink"];
+const secretCombo = [];
+const winAudio = new Audio("/sounds/mixkit-achievement-bell-600.wav");
+const clickAudio = new Audio("/sounds/mixkit-cool-interface-click-tone-2568.wav");
 
 const PLAYER_GUESS= {
 	guess1 : [],
@@ -15,24 +17,26 @@ const PLAYER_GUESS= {
 	guess10 : []
 }
 
-///*----- constants -----*/
-
-
 
 ///*----- app's state (variables) -----*/
-const colors = ["red", "green","yellow", "purple", "blue", "pink"];
-const secretCombo = [];
-const matchElm = document.getElementsByClassName("match");
-const buttons = document.querySelectorAll("button");
+let CURRENT_GUESS = 1;
+let CURRENT_GUESS_ARRAY = `guess${CURRENT_GUESS}`;
 let guessCombo;
 let guessFeedback;
 
 ///*----- cached element references -----*/
-//let winner;;
+const matchElm = document.getElementsByClassName("match");
+const buttons = document.querySelectorAll("button");
  
 
 ///*----- event listeners -----*/
 //playAgainBtn.addEventListener("click", initial)
+
+//Get the ID of the button
+buttons.forEach(function(button) {
+  button.addEventListener("click", handleColor);
+});
+//End Getting ID of button
 
 ///*----- functions -----*/
 //initial()
@@ -51,18 +55,14 @@ for(let i = 0; i< 4; i++){
 	}
 	return secretCombo;
 }
-console.log(generateSecretCode())
+console.log(generateSecretCode());
+//End getting secret color code
 
-
-//Get the ID of the button
-buttons.forEach(function(button) {
-  button.addEventListener("click", handleColor);
-});
-//End Getting ID of button
 
 
 //Modify Object selfsufficiently
 function handleColor(evt) {
+  clickAudio.play();
   const colorClick = evt.target.id;
   guessCombo = document.querySelectorAll(`#guess-${CURRENT_GUESS}>div.color_circle`);;
   if(PLAYER_GUESS[CURRENT_GUESS_ARRAY].length <= 3){
@@ -72,11 +72,13 @@ function handleColor(evt) {
     CURRENT_GUESS++
     CURRENT_GUESS_ARRAY = `guess${CURRENT_GUESS}`;
   } 
-   if(PLAYER_GUESS[CURRENT_GUESS_ARRAY].length === 4){
+  if(PLAYER_GUESS[CURRENT_GUESS_ARRAY].length === 4){
       compareGuess()
     }
 }
 //END modify object
+
+
 
 //Compare Guess 
 function compareGuess() {
@@ -98,9 +100,11 @@ function compareGuess() {
     buttons.forEach(function(button) {
     button.removeEventListener("click", handleColor);
 });
+winnerMessage();
   } 
 }
 //END compare guess
+
 
 //Get the ID of the combo html to render the colors of the game
 function displayColor() {
@@ -110,3 +114,15 @@ function displayColor() {
   guessCombo[3].setAttribute("id", `${PLAYER_GUESS[CURRENT_GUESS_ARRAY][3]}`);
 }
 // End of displaying colors in Game
+
+//Get Winner message
+function winnerMessage() {
+  winAudio.play();
+  document.querySelector("h1").textContent = "YOU ARE THE MASTERMIND!!!";
+  document.querySelector("p").style.display ="none";
+  document.querySelector("h3").style.display ="block";
+}
+
+//End getting winner message
+
+//"🎉🎉🎉"

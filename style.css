@@ -37,22 +37,39 @@ section{
 }
 
 aside{
+	border: 2px solid orange;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	width:50%;
 }
+
 h1{
+	text-align: center;
+	border: 2px red solid;
 	font-size: 3rem;
 	letter-spacing: 3px; 
 }
+
 h4{
+	border: 2px red solid;
 	font-size: 1rem;
 	letter-spacing: 2px; 
 }
+
 p{
-font-family: 'Roboto', sans-serif;
+	border: 2px red solid;
+	display: block;
+	text-align: center;
+	font-family: 'Roboto', sans-serif;
+	 line-height: 30px;
+}
+
+h3{
+	border: 2px solid red;
+	font-size: 3rem;
+	display: none;
 }
 
 .combos{
@@ -65,14 +82,15 @@ font-family: 'Roboto', sans-serif;
 	margin:20px auto;
 	height: 90px;
 	width:80%;
-	/*opacity: 60%;*/
 }
+
 .color_circle{
 	width: 60px;
 	height: 60px;
 	border-radius: 50%;
 	background-color: #ECF8F9;
 }
+
 .feedback{
 	width: 70px;
 	height: 70px;
@@ -84,13 +102,16 @@ font-family: 'Roboto', sans-serif;
 	align-items: center;
 	justify-content: center;
 }
+
 .match{
 	margin:0 auto;
 	width: 20px;
 	height: 20px;
 	border-radius: 50%;
 }
+
 .choice{
+	border: 2px red solid;
 	display: inline-block;
 	justify-content: center;
 	width: 260px;
