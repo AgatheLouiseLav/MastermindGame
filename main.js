@@ -31,15 +31,12 @@ const showCombo = document.querySelectorAll(".reveal-combo>div");
 const divCombo = document.querySelector(".reveal-combo");
 const playAgainBtn = document.getElementById("play-again");
 
-divCombo.style.display = "none";
 
+divCombo.style.display = "none";
 ///*----- event listeners -----*//
-playAgainBtn.addEventListener("click", initial)
+playAgainBtn.addEventListener("click", initial);
 
 //Get the ID of the button
-buttons.forEach(function(button) {
-  button.addEventListener("click", handleColor);
-});
 
 //End Getting ID of button
 
@@ -55,6 +52,9 @@ function initial() {
 	generateSecretCode();
   playAgainBtn.style.display ="none";
   divCombo.style.display = "none";
+  buttons.forEach(function(button) {
+  button.addEventListener("click", handleColor);
+});
 	//clearBoard()
 	//clearMessage()
 }
@@ -74,6 +74,7 @@ console.log(generateSecretCode());
 
 //Modify Object selfsufficiently
 function handleColor(evt) {
+  //evt.preventDefault(); <== tried to fix the click pb
   const colorClick = evt.target.id;
   clickAudio.play(); 
   guessCombo = document.querySelectorAll(`#guess-${CURRENT_GUESS}>div.color_circle`); 
@@ -113,11 +114,11 @@ function compareGuess() {
     button.removeEventListener("click", handleColor);})
     winnerMessage();
   } 
-  if(PLAYER_GUESS.guess10 === !perfectMatches){
+  if(PLAYER_GUESS.guess10.length === 4){
     console.log("You lose!");
     buttons.forEach(function(button) {
     button.removeEventListener("click", handleColor);})
-    //loseMessage();
+    loseMessage();
   }
  
 }
@@ -146,6 +147,20 @@ function winnerMessage() {
   displayCombo();
 }
 //End getting winner message
+
+//Dislay lose message
+function loseMessage() {
+  playAgainBtn.style.display ="block";
+  document.querySelector("h1").textContent = "Sorry , you ran out of attempts...";
+  document.querySelector("p").style.display ="none";
+  document.querySelector("h4").style.display ="none";
+  document.querySelector(".choice").style.display ="none";
+  document.querySelector("h3").style.display ="block";
+  document.querySelector("h3").textContent ="😭";
+  displayCombo();
+}
+
+//End display loose message
 
 
 //Display combo
