@@ -26,8 +26,9 @@ let guessFeedback;
 
 ///*----- cached element references -----*/
 const matchElm = document.getElementsByClassName("match");
-const buttons = document.querySelectorAll("button");
- 
+const buttons = document.querySelectorAll(".choice");
+const playAgainBtn = document.getElementById("play-again");
+const showCombo = document.querySelector(".reveal-combo");
 
 ///*----- event listeners -----*/
 //playAgainBtn.addEventListener("click", initial)
@@ -38,11 +39,18 @@ buttons.forEach(function(button) {
 });
 //End Getting ID of button
 
+//Play  btn
+playAgainBtn.addEventListener("click", initial)
+//End play btn
+
 ///*----- functions -----*/
 //initial()
 
 function initial() {
-	generateSecretCode();
+  console.log("clicked");
+  playAgainBtn.style.display ="none";
+  showCombo.style.display ="none";
+	//generateSecretCode();
 	//clearBoard()
 	//clearMessage()
 }
@@ -64,16 +72,16 @@ console.log(generateSecretCode());
 function handleColor(evt) {
   clickAudio.play();
   const colorClick = evt.target.id;
-  guessCombo = document.querySelectorAll(`#guess-${CURRENT_GUESS}>div.color_circle`);;
+  guessCombo = document.querySelectorAll(`#guess-${CURRENT_GUESS}>div.color_circle`);
   if(PLAYER_GUESS[CURRENT_GUESS_ARRAY].length <= 3){
     PLAYER_GUESS[CURRENT_GUESS_ARRAY].push(colorClick);
     displayColor();
   } else {
-    CURRENT_GUESS++
+    CURRENT_GUESS++;
     CURRENT_GUESS_ARRAY = `guess${CURRENT_GUESS}`;
   } 
   if(PLAYER_GUESS[CURRENT_GUESS_ARRAY].length === 4){
-      compareGuess()
+      compareGuess();
     }
 }
 //END modify object
@@ -118,8 +126,12 @@ function displayColor() {
 //Get Winner message
 function winnerMessage() {
   winAudio.play();
+  playAgainBtn.style.display ="block";
+  showCombo.style.display ="flex";
   document.querySelector("h1").textContent = "YOU ARE THE MASTERMIND!!!";
   document.querySelector("p").style.display ="none";
+  document.querySelector("h4").style.display ="none";
+  document.querySelector(".choice").style.display ="none";
   document.querySelector("h3").style.display ="block";
 }
 

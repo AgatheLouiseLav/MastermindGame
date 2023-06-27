@@ -123,6 +123,17 @@ h3{
 #m-red{
 	background-color: var(--clr-dark-red);
 }
+#play-again{
+	border-radius: 15px;
+	width: 150px;
+	padding: 15px;
+	color: #27374D;
+	font-size: 1rem;
+	font-weight: 600;
+}
+#play-again:hover{
+	color:#ECF8F9;
+}
 
 button{
 	margin: 10px;
@@ -160,3 +171,10 @@ span{
 	font-weight: 600;
 }
 
+.reveal-combo{
+	display: flex;
+	justify-content: space-evenly;
+	flex-direction: row;
+	border: 1px solid red;
+	width: 300px;
+}
