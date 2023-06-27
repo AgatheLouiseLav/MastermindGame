@@ -1,8 +1,8 @@
 ///*----- constants -----*/
 const colors = ["red", "green","yellow", "purple", "blue", "pink"];
-const winAudio = new Audio("/sounds/mixkit-achievement-bell-600.wav");
-const loseAudio = new Audio("/sounds/mixkit-losing-drums-2023.wav");
-const clickAudio = new Audio("/sounds/mixkit-cool-interface-click-tone-2568.wav");
+const winAudio = new Audio("./sounds/mixkit-achievement-bell-600.wav");
+const loseAudio = new Audio("./sounds/mixkit-losing-drums-2023.wav");
+const clickAudio = new Audio("./sounds/mixkit-cool-interface-click-tone-2568.wav");
 
 ///*----- app's state (variables) -----*/
 let PLAYER_GUESS = {};
@@ -68,7 +68,7 @@ function handleColor(evt) {
   const colorClick = evt.target.id;
   clickAudio.play(); 
   guessCombo = document.querySelectorAll(`#guess-${CURRENT_GUESS}>div.color_circle`); 
-
+  
   if(PLAYER_GUESS[CURRENT_GUESS_ARRAY].length <= 3) {
     PLAYER_GUESS[CURRENT_GUESS_ARRAY].push(colorClick);
     displayColor();
