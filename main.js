@@ -4,7 +4,7 @@ const secretCombo = [];
 const winAudio = new Audio("/sounds/mixkit-achievement-bell-600.wav");
 const clickAudio = new Audio("/sounds/mixkit-cool-interface-click-tone-2568.wav");
 
-const PLAYER_GUESS= {
+let PLAYER_GUESS= {
 	guess1 : [],
 	guess2 : [],
 	guess3 : [],
@@ -32,31 +32,36 @@ const divCombo = document.querySelector(".reveal-combo");
 const playAgainBtn = document.getElementById("play-again");
 
 
-divCombo.style.display = "none";
+
+
+ divCombo.style.display = "none";
 ///*----- event listeners -----*//
 playAgainBtn.addEventListener("click", initial);
 
-//Get the ID of the button
-
-//End Getting ID of button
-
-//Play  btn
-
-
-//End play btn
 
 ///*----- functions -----*/
-//initial()
 
 function initial() {
-	generateSecretCode();
-  playAgainBtn.style.display ="none";
-  divCombo.style.display = "none";
-  buttons.forEach(function(button) {
-  button.addEventListener("click", handleColor);
-});
-	//clearBoard()
-	//clearMessage()
+  
+  PLAYER_GUESS= {
+	guess1 : [],
+	guess2 : [],
+	guess3 : [],
+	guess4 : [],
+	guess5 : [],
+	guess6 : [],
+	guess7 : [],
+	guess8 : [],
+	guess9 : [],
+	guess10 : []
+}
+  generateSecretCode();
+  console.log(secretCombo);
+  CURRENT_GUESS=1;
+  CURRENT_GUESS_ARRAY= `guess${CURRENT_GUESS}`;
+  clearBoard();
+  clearMessage();
+  ableButton();
 }
 
 //Generate a random secret color code
@@ -67,7 +72,6 @@ for(let i = 0; i< 4; i++){
 	}
 	return secretCombo;
 }
-console.log(generateSecretCode());
 //End getting secret color code
 
 
@@ -110,14 +114,12 @@ function compareGuess() {
   }
   if(perfectMatches === 4){
     console.log("winner")
-    buttons.forEach(function(button) {
-    button.removeEventListener("click", handleColor);})
+    disableButton();
     winnerMessage();
   } 
   if(PLAYER_GUESS.guess10.length === 4){
     console.log("You lose!");
-    buttons.forEach(function(button) {
-    button.removeEventListener("click", handleColor);})
+    disableButton();
     loseMessage();
   }
  
@@ -159,7 +161,6 @@ function loseMessage() {
   document.querySelector("h3").textContent ="😭";
   displayCombo();
 }
-
 //End display loose message
 
 
@@ -171,7 +172,45 @@ function displayCombo() {
   showCombo[2].setAttribute("id", `${secretCombo[2]}`);
   showCombo[3].setAttribute("id", `${secretCombo[3]}`);
 }
-
 //End display combo
 
-//"🎉🎉🎉"
+//Clear board
+function clearBoard() {
+  const colorCircles = document.querySelectorAll(".color_circle");
+  colorCircles.forEach((circle) => {
+    circle.removeAttribute("id");
+  });  
+  const matches = document.querySelectorAll(".match");
+  matches.forEach((match) => {
+    match.removeAttribute("id");
+  });
+}
+//End Clear board
+
+//Clear Message
+function clearMessage() {
+  playAgainBtn.style.display ="none";
+  divCombo.style.display = "none";
+  document.querySelector("h1").textContent = "MASTERMIND";
+  document.querySelector("h3").style.display ="none";
+  document.querySelector("p").style.display ="block";
+  document.querySelector(".choice").style.display ="block";
+  document.querySelector("h4").style.display ="block";
+}
+
+//End Clear message
+
+//Able button
+function ableButton() {
+  buttons.forEach(function(button) {
+  button.addEventListener("click", handleColor)});
+}
+//end able button
+
+//Disable Button
+function disableButton() {
+  buttons.forEach(function(button) {
+    button.removeEventListener("click", handleColor)});
+}
+
+//End disable button
