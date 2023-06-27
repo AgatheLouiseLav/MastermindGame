@@ -23,7 +23,6 @@ let PLAYER_GUESS= {
 	guess10 : []
 }
 
-
 ///*----- cached element references -----*/
 const matchElm = document.getElementsByClassName("match");
 const buttons = document.querySelectorAll(".choice>button");
@@ -34,7 +33,6 @@ divCombo.style.display = "none";
 
 ///*----- event listeners -----*//
 playAgainBtn.addEventListener("click", initial);
-
 
 ///*----- functions -----*/
 
@@ -51,11 +49,11 @@ function initial() {
 	guess9 : [],
 	guess10 : []
 }
+  CURRENT_GUESS=1;
+  CURRENT_GUESS_ARRAY= `guess${CURRENT_GUESS}`;
   secretCombo = [];
   generateSecretCode();
   console.log(secretCombo);
-  CURRENT_GUESS=1;
-  CURRENT_GUESS_ARRAY= `guess${CURRENT_GUESS}`;
   clearBoard();
   clearMessage();
   ableButton();
@@ -75,7 +73,6 @@ for(let i = 0; i< 4; i++){
 
 //Modify Object selfsufficiently
 function handleColor(evt) {
-  //evt.preventDefault(); <== tried to fix the click pb
   const colorClick = evt.target.id;
   clickAudio.play(); 
   guessCombo = document.querySelectorAll(`#guess-${CURRENT_GUESS}>div.color_circle`); 
@@ -85,6 +82,9 @@ function handleColor(evt) {
   } else {
     CURRENT_GUESS++;
     CURRENT_GUESS_ARRAY = `guess${CURRENT_GUESS}`;
+    guessCombo = document.querySelectorAll(`#guess-${CURRENT_GUESS}>div.color_circle`);
+    PLAYER_GUESS[CURRENT_GUESS_ARRAY].push(colorClick);
+    displayColor();
   } 
   if(PLAYER_GUESS[CURRENT_GUESS_ARRAY].length === 4){
       compareGuess();
@@ -110,12 +110,10 @@ function compareGuess() {
     }  
   }
   if(perfectMatches === 4){
-    console.log("winner")
     disableButton();
     winnerMessage();
   } 
   if(PLAYER_GUESS.guess10.length === 4){
-    console.log("You lose!");
     disableButton();
     loseMessage();
   }
@@ -136,7 +134,7 @@ function displayColor() {
 
 //Get Winner message
 function winnerMessage() {
-  winAudio.play();
+  //winAudio.play();
   playAgainBtn.style.display ="block";
   document.querySelector("h1").textContent = "YOU ARE THE MASTERMIND!!!";
   document.querySelector("p").style.display ="none";
@@ -150,6 +148,7 @@ function winnerMessage() {
 
 //Dislay lose message
 function loseMessage() {
+  //loseAudio.play();
   playAgainBtn.style.display ="block";
   document.querySelector("h1").textContent = "Sorry , you ran out of attempts...";
   document.querySelector("p").style.display ="none";
@@ -165,10 +164,7 @@ function loseMessage() {
 //Display combo
 function displayCombo() {
   divCombo.style.display = "flex";
-  showCombo[0].setAttribute("id", `${secretCombo[0]}`);
-  showCombo[1].setAttribute("id", `${secretCombo[1]}`);
-  showCombo[2].setAttribute("id", `${secretCombo[2]}`);
-  showCombo[3].setAttribute("id", `${secretCombo[3]}`);
+  showCombo.forEach((combo, i) => combo.setAttribute("id", `${secretCombo[i]}`))
 }
 //End display combo
 
@@ -187,7 +183,6 @@ function clearBoard() {
 
 //Clear Message
 function clearMessage() {
-  loseAudio.play();
   playAgainBtn.style.display ="none";
   divCombo.style.display = "none";
   document.querySelector("h1").textContent = "MASTERMIND";
