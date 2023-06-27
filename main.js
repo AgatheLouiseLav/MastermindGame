@@ -5,23 +5,11 @@ const loseAudio = new Audio("/sounds/mixkit-losing-drums-2023.wav");
 const clickAudio = new Audio("/sounds/mixkit-cool-interface-click-tone-2568.wav");
 
 ///*----- app's state (variables) -----*/
+let PLAYER_GUESS = {};
 let CURRENT_GUESS = 1;
 let CURRENT_GUESS_ARRAY = `guess${CURRENT_GUESS}`;
 let guessCombo;
 let guessFeedback;
-let secretCombo = [];
-let PLAYER_GUESS= {
-	guess1 : [],
-	guess2 : [],
-	guess3 : [],
-	guess4 : [],
-	guess5 : [],
-	guess6 : [],
-	guess7 : [],
-	guess8 : [],
-	guess9 : [],
-	guess10 : []
-}
 
 ///*----- cached element references -----*/
 const matchElm = document.getElementsByClassName("match");
@@ -29,6 +17,12 @@ const buttons = document.querySelectorAll(".choice>button");
 const showCombo = document.querySelectorAll(".reveal-combo>div");
 const divCombo = document.querySelector(".reveal-combo");
 const playAgainBtn = document.getElementById("play-again");
+const title = document.querySelector("h1");
+const h3Elm = document.querySelector("h3");
+const pElm = document.querySelector("p");
+const h4Elm = document.querySelector("h4");
+const btnChoices = document.querySelector(".choice");
+
 divCombo.style.display = "none";
 
 ///*----- event listeners -----*//
@@ -37,7 +31,7 @@ playAgainBtn.addEventListener("click", initial);
 ///*----- functions -----*/
 
 function initial() {
-  PLAYER_GUESS= {
+  PLAYER_GUESS = {
 	guess1 : [],
 	guess2 : [],
 	guess3 : [],
@@ -49,34 +43,33 @@ function initial() {
 	guess9 : [],
 	guess10 : []
 }
-  CURRENT_GUESS=1;
-  CURRENT_GUESS_ARRAY= `guess${CURRENT_GUESS}`;
+  CURRENT_GUESS = 1;
+  CURRENT_GUESS_ARRAY = `guess${CURRENT_GUESS}`;
   secretCombo = [];
   generateSecretCode();
-  console.log(secretCombo);
   clearBoard();
   clearMessage();
   ableButton();
-}
+  console.log(secretCombo);
+};
 
-//Generate a random secret color code
-function generateSecretCode(){
+//Generate a random color code
+function generateSecretCode() {
 for(let i = 0; i< 4; i++){
-	const randomColors = Math.floor(Math.random() * colors.length)
-	secretCombo.push(colors[randomColors]) ;    
-	}
+	const randomColors = Math.floor(Math.random() * colors.length);
+	secretCombo.push(colors[randomColors]);    
+	};
 	return secretCombo;
-}
-//End getting secret color code
-
-
+};
+//End getting color code
 
 //Modify Object selfsufficiently
 function handleColor(evt) {
   const colorClick = evt.target.id;
   clickAudio.play(); 
   guessCombo = document.querySelectorAll(`#guess-${CURRENT_GUESS}>div.color_circle`); 
-  if(PLAYER_GUESS[CURRENT_GUESS_ARRAY].length <= 3){
+
+  if(PLAYER_GUESS[CURRENT_GUESS_ARRAY].length <= 3) {
     PLAYER_GUESS[CURRENT_GUESS_ARRAY].push(colorClick);
     displayColor();
   } else {
@@ -85,14 +78,13 @@ function handleColor(evt) {
     guessCombo = document.querySelectorAll(`#guess-${CURRENT_GUESS}>div.color_circle`);
     PLAYER_GUESS[CURRENT_GUESS_ARRAY].push(colorClick);
     displayColor();
-  } 
-  if(PLAYER_GUESS[CURRENT_GUESS_ARRAY].length === 4){
+  };
+
+  if(PLAYER_GUESS[CURRENT_GUESS_ARRAY].length === 4) {
       compareGuess();
-    }
-}
+    };
+};
 //END modify object
-
-
 
 //Compare Guess 
 function compareGuess() {
@@ -100,6 +92,7 @@ function compareGuess() {
   const currentGuessArray = PLAYER_GUESS[CURRENT_GUESS_ARRAY];
   let perfectMatches = 0;
   let colorMatches = 0;  
+  
   for (let i = 0; i < currentGuessArray.length; i++) {
     if (currentGuessArray[i] === secretCombo[i]) {
       perfectMatches++; 
@@ -108,64 +101,59 @@ function compareGuess() {
       colorMatches++;
       guessFeedback[i].setAttribute("id", "m-white");
     }  
-  }
-  if(perfectMatches === 4){
+  };
+
+  if(perfectMatches === 4) {
     disableButton();
     winnerMessage();
-  } 
-  if(PLAYER_GUESS.guess10.length === 4){
+  } ;
+
+  if(PLAYER_GUESS.guess10.length === 4) {
     disableButton();
     loseMessage();
-  }
- 
-}
+  };
+};
 //END compare guess
 
-
-//Get the ID of the combo html to render the colors of the game
+//Display the colors th player choose on the board
 function displayColor() {
-  guessCombo[0].setAttribute("id", `${PLAYER_GUESS[CURRENT_GUESS_ARRAY][0]}`);
-  guessCombo[1].setAttribute("id", `${PLAYER_GUESS[CURRENT_GUESS_ARRAY][1]}`);
-  guessCombo[2].setAttribute("id", `${PLAYER_GUESS[CURRENT_GUESS_ARRAY][2]}`);
-  guessCombo[3].setAttribute("id", `${PLAYER_GUESS[CURRENT_GUESS_ARRAY][3]}`);
+  guessCombo.forEach((guess, i) => guess.setAttribute("id", `${PLAYER_GUESS[CURRENT_GUESS_ARRAY][i]}`));
 }
 // End of displaying colors in Game
 
-
 //Get Winner message
 function winnerMessage() {
-  //winAudio.play();
+  winAudio.play();
   playAgainBtn.style.display ="block";
-  document.querySelector("h1").textContent = "YOU ARE THE MASTERMIND!!!";
-  document.querySelector("p").style.display ="none";
-  document.querySelector("h4").style.display ="none";
-  document.querySelector(".choice").style.display ="none";
-  document.querySelector("h3").style.display ="block";
-  document.querySelector("h3").textContent ="🎉🎉🎉";
+  title.textContent = "YOU ARE THE MASTERMIND!!!";
+  pElm.style.display ="none";
+  h4Elm.style.display ="none";
+  btnChoices.style.display ="none";
+  h3Elm.style.display ="block";
+  h3Elm.textContent ="🎉🎉🎉";
   displayCombo();
-}
+};
 //End getting winner message
 
 //Dislay lose message
 function loseMessage() {
-  //loseAudio.play();
+  loseAudio.play();
   playAgainBtn.style.display ="block";
-  document.querySelector("h1").textContent = "Sorry , you ran out of attempts...";
-  document.querySelector("p").style.display ="none";
-  document.querySelector("h4").style.display ="none";
-  document.querySelector(".choice").style.display ="none";
-  document.querySelector("h3").style.display ="block";
-  document.querySelector("h3").textContent ="😭";
+  title.textContent = "Sorry , you ran out of attempts...";
+  pElm.style.display ="none";
+  h4Elm.style.display ="none";
+  btnChoices.style.display ="none";
+  h3Elm.style.display ="block";
+  h3Elm.textContent ="😭";
   displayCombo();
-}
+};
 //End display loose message
-
 
 //Display combo
 function displayCombo() {
   divCombo.style.display = "flex";
-  showCombo.forEach((combo, i) => combo.setAttribute("id", `${secretCombo[i]}`))
-}
+  showCombo.forEach((combo, i) => combo.setAttribute("id", `${secretCombo[i]}`));
+};
 //End display combo
 
 //Clear board
@@ -178,33 +166,31 @@ function clearBoard() {
   matches.forEach((match) => {
     match.removeAttribute("id");
   });
-}
+};
 //End Clear board
 
 //Clear Message
 function clearMessage() {
   playAgainBtn.style.display ="none";
   divCombo.style.display = "none";
-  document.querySelector("h1").textContent = "MASTERMIND";
-  document.querySelector("h3").style.display ="none";
-  document.querySelector("p").style.display ="block";
-  document.querySelector(".choice").style.display ="block";
-  document.querySelector("h4").style.display ="block";
-}
-
+  title.textContent = "MASTERMIND";
+  h3Elm.style.display ="none";
+  pElm.style.display ="block";
+  btnChoices.style.display ="block";
+  h4Elm.style.display ="block";
+};
 //End Clear message
 
 //Able button
 function ableButton() {
   buttons.forEach(function(button) {
   button.addEventListener("click", handleColor)});
-}
-//end able button
+};
+//End able button
 
 //Disable Button
 function disableButton() {
   buttons.forEach(function(button) {
     button.removeEventListener("click", handleColor)});
-}
-
+};
 //End disable button
