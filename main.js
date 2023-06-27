@@ -1,6 +1,7 @@
 ///*----- constants -----*/
 const colors = ["red", "green","yellow", "purple", "blue", "pink"];
 const winAudio = new Audio("/sounds/mixkit-achievement-bell-600.wav");
+const loseAudio = new Audio("/sounds/mixkit-losing-drums-2023.wav");
 const clickAudio = new Audio("/sounds/mixkit-cool-interface-click-tone-2568.wav");
 
 ///*----- app's state (variables) -----*/
@@ -142,6 +143,7 @@ function winnerMessage() {
   document.querySelector("h4").style.display ="none";
   document.querySelector(".choice").style.display ="none";
   document.querySelector("h3").style.display ="block";
+  document.querySelector("h3").textContent ="🎉🎉🎉";
   displayCombo();
 }
 //End getting winner message
@@ -173,8 +175,8 @@ function displayCombo() {
 //Clear board
 function clearBoard() {
   const colorCircles = document.querySelectorAll(".color_circle");
-  colorCircles.forEach((circle) => {
-    circle.removeAttribute("id");
+  colorCircles.forEach((color) => {
+    color.removeAttribute("id");
   });  
   const matches = document.querySelectorAll(".match");
   matches.forEach((match) => {
@@ -185,6 +187,7 @@ function clearBoard() {
 
 //Clear Message
 function clearMessage() {
+  loseAudio.play();
   playAgainBtn.style.display ="none";
   divCombo.style.display = "none";
   document.querySelector("h1").textContent = "MASTERMIND";
