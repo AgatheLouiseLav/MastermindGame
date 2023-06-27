@@ -1,9 +1,14 @@
 ///*----- constants -----*/
 const colors = ["red", "green","yellow", "purple", "blue", "pink"];
-const secretCombo = [];
 const winAudio = new Audio("/sounds/mixkit-achievement-bell-600.wav");
 const clickAudio = new Audio("/sounds/mixkit-cool-interface-click-tone-2568.wav");
 
+///*----- app's state (variables) -----*/
+let CURRENT_GUESS = 1;
+let CURRENT_GUESS_ARRAY = `guess${CURRENT_GUESS}`;
+let guessCombo;
+let guessFeedback;
+let secretCombo = [];
 let PLAYER_GUESS= {
 	guess1 : [],
 	guess2 : [],
@@ -18,23 +23,14 @@ let PLAYER_GUESS= {
 }
 
 
-///*----- app's state (variables) -----*/
-let CURRENT_GUESS = 1;
-let CURRENT_GUESS_ARRAY = `guess${CURRENT_GUESS}`;
-let guessCombo;
-let guessFeedback;
-
 ///*----- cached element references -----*/
 const matchElm = document.getElementsByClassName("match");
 const buttons = document.querySelectorAll(".choice>button");
 const showCombo = document.querySelectorAll(".reveal-combo>div");
 const divCombo = document.querySelector(".reveal-combo");
 const playAgainBtn = document.getElementById("play-again");
+divCombo.style.display = "none";
 
-
-
-
- divCombo.style.display = "none";
 ///*----- event listeners -----*//
 playAgainBtn.addEventListener("click", initial);
 
@@ -42,7 +38,6 @@ playAgainBtn.addEventListener("click", initial);
 ///*----- functions -----*/
 
 function initial() {
-  
   PLAYER_GUESS= {
 	guess1 : [],
 	guess2 : [],
@@ -55,6 +50,7 @@ function initial() {
 	guess9 : [],
 	guess10 : []
 }
+  secretCombo = [];
   generateSecretCode();
   console.log(secretCombo);
   CURRENT_GUESS=1;
