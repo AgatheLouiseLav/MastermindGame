@@ -27,3 +27,5 @@ The player has to use logical deduction and the feedback provided to guess the s
 
 
 For this Project, I have used HTML, CSS and Javascript.
+
+Link to play Mastermind : https://agathelouiselav.github.io/MastermindGame/
