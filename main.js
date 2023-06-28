@@ -19,6 +19,7 @@ const divCombo = document.querySelector(".reveal-combo");
 const playAgainBtn = document.getElementById("play-again");
 const title = document.querySelector("h1");
 const h3Elm = document.querySelector("h3");
+const h2Elm = document.querySelector("h2");
 const pElm = document.querySelector("p");
 const h4Elm = document.querySelector("h4");
 const btnChoices = document.querySelector(".choice");
@@ -126,6 +127,7 @@ function winnerMessage() {
   playAgainBtn.style.display ="block";
   title.textContent = "YOU ARE THE MASTERMIND!!!";
   pElm.style.display ="none";
+  h2Elm.style.display ="none";
   h4Elm.style.display ="none";
   btnChoices.style.display ="none";
   h3Elm.style.display ="block";
@@ -141,6 +143,7 @@ function loseMessage() {
   title.textContent = "Sorry , you ran out of attempts...";
   pElm.style.display ="none";
   h4Elm.style.display ="none";
+  h2Elm.style.display ="none";
   btnChoices.style.display ="none";
   h3Elm.style.display ="block";
   h3Elm.textContent ="😭";
@@ -174,6 +177,7 @@ function clearMessage() {
   divCombo.style.display = "none";
   title.textContent = "MASTERMIND";
   h3Elm.style.display ="none";
+  h2Elm.style.display ="block";
   pElm.style.display ="block";
   btnChoices.style.display ="block";
   h4Elm.style.display ="block";

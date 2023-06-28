@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Koulen&family=Roboto:wght@300&display=swap');
+
 :root{
 	--clr-dark-blue : #27374D;
 	--clr-grey-board: #526D82;
@@ -14,15 +15,22 @@
 
 *{
 	box-sizing: border-box;
-	background-color: var(--clr-dark-blue);
 }
+
 body{
-	margin: 40px;
-	display:flex;
-	gap:10px;
+	height: 100vh;
 	color:var(--clr-white);
 	font-family: 'Koulen', cursive;
+	background-color: var(--clr-dark-blue);
+}
+nav{
+	display: none;
+}
 
+main{
+	margin: 40px 40px 0 40px;
+	gap:10px;
+	display:flex;
 }
 
 section{
@@ -34,13 +42,14 @@ section{
 	overflow-y: scroll;
 	scroll-behavior: smooth;
 	-ms-overflow-style: none;
+	/*border:2px solid green;*/
 }
+
 section::-webkit-scrollbar { 
     display: none; 
 }
 
 aside{
-	/*border: 2px solid orange;*/
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -50,33 +59,33 @@ aside{
 
 h1{
 	text-align: center;
-	/*border: 2px red solid;*/
 	font-size: 3rem;
 	letter-spacing: 3px; 
 }
 
 h4{
-	/*border: 2px red solid;*/
 	font-size: 1rem;
 	letter-spacing: 2px; 
 }
 
 p{
-	/*border: 2px red solid;*/
 	display: block;
 	text-align: center;
 	font-size: 20px;
 	font-family: 'Roboto', sans-serif;
-	 line-height: 30px;
+	line-height: 30px;
+}
+h2{
+font-family: 'Roboto', sans-serif;
 }
 
 h3{
-	/*border: 2px solid red;*/
 	font-size: 3rem;
 	display: none;
 }
 
 .combos{
+	background-color: var(--clr-dark-blue);
 	display: flex;
 	flex-direction: row;
 	justify-content: space-evenly;
@@ -108,6 +117,7 @@ h3{
 }
 
 .match{
+	background-color: var(--clr-dark-blue);
 	margin:0 auto;
 	width: 20px;
 	height: 20px;
@@ -115,7 +125,7 @@ h3{
 }
 
 .choice{
-	/*border: 2px red solid;*/
+	background-color: var(--clr-dark-blue);
 	display: inline-block;
 	justify-content: center;
 	width: 260px;
@@ -124,9 +134,11 @@ h3{
 #m-white{
 	background-color: var(--clr-white);
 }
+
 #m-red{
 	background-color: var(--clr-dark-red);
 }
+
 #play-again{
 	border-radius: 15px;
 	width: 150px;
@@ -136,6 +148,7 @@ h3{
 	font-size: 1rem;
 	font-weight: 600;
 }
+
 #play-again:hover{
 	color:#ECF8F9;
 }
@@ -150,28 +163,36 @@ button{
 	cursor: pointer;
 	box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.352);
 }
+
 button:hover{
 	background-color: #526D82;
 	opacity: 80%;
 }
+
 #green{
 	background-color: var(--clr-green);
 }
+
 #yellow{
 	background-color: var(--clr-yellow);
 }
+
 #pink{
 	background-color: var(--clr-pink);
 }
+
 #red{
 	background-color: var(--clr-red);
 }
+
 #blue{
 	background-color: var(--clr-blue);
 }
+
 #purple{
 	background-color: var(--clr-purple);
 }
+
 span{
 	font-weight: 600;
 }
@@ -180,6 +201,10 @@ span{
 	display: flex;
 	justify-content: space-evenly;
 	flex-direction: row;
-	/*border: 1px solid red;*/
 	width: 300px;
+}
+
+footer{
+	margin-top: 5px;
+	text-align: center;
 }
