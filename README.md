@@ -1,5 +1,4 @@
 # MastermindGame
-Mastermind Game Browser
 
 Mastermind is a code-breaking game, where one player has guess the code (randomly generated) with a limited number of attempts(10). The code consists of a sequence of colors.
 The player has to use logical deduction and the feedback provided to guess the secret code.
@@ -18,7 +17,7 @@ The player has to use logical deduction and the feedback provided to guess the s
 >>Feedback: the player continues making guesses, using the feedback provided to make better guesses.
 
 >>Winning: The game ends when the code breaker successfully guesses the secret code, matching all colors and positions, in less than the given number of attempts. 
-<img src="MastermindWinCon.png" alt="screenshot of mastermind game" />
+>><img src="MastermindWinCon.png" alt="screenshot of mastermind game" />
 
 >>Losing: If the player is unable to guess the secret code within the 10 attempts,he loose.
 >><img src="MasterminsLoseCon.png" alt="screenshot of mastermind game" />
