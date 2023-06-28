@@ -50,7 +50,6 @@ function initial() {
   clearBoard();
   clearMessage();
   ableButton();
-  console.log(secretCombo);
 };
 
 //Generate a random color code
