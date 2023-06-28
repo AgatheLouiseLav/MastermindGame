@@ -140,7 +140,7 @@ function winnerMessage() {
 function loseMessage() {
   loseAudio.play();
   playAgainBtn.style.display ="block";
-  title.textContent = "Sorry , you ran out of attempts...";
+  title.textContent = "Sorry, you ran out of attempts...";
   pElm.style.display ="none";
   h4Elm.style.display ="none";
   h2Elm.style.display ="none";

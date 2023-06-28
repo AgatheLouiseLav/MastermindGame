@@ -18,13 +18,10 @@
 }
 
 body{
-	height: 100vh;
+	height: 90vh;
 	color:var(--clr-white);
 	font-family: 'Koulen', cursive;
 	background-color: var(--clr-dark-blue);
-}
-nav{
-	display: none;
 }
 
 main{
@@ -207,4 +204,7 @@ span{
 footer{
 	margin-top: 5px;
 	text-align: center;
+	width: 100%;
+	position: fixed;
+	bottom:0;
 }
