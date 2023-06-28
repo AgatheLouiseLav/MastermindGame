@@ -10,9 +10,9 @@ The player has to use logical deduction and the feedback provided to guess the s
 
 >>Evaluation: After each guess, some feedback will be generated on the correctness of the guess. The feedback consists of two elements:
 
--The number of exact matches, the colors match both in color and position to the secret code.
+>>The number of exact matches, the colors match both in color and position to the secret code.
 
--The number of color matches, this is the correct in color but in the wrong position.
+>>The number of color matches, this is the correct in color but in the wrong position.
    
 >>Feedback: the player continues making guesses, using the feedback provided to make better guesses.
 
