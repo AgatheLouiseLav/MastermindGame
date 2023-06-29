@@ -19,7 +19,9 @@ The secret code can have many times the same colour!!!
 
 	BONUS: make it mobile responsive,
 
-=>JS:  	1.Generate a secret code, using a for loop.
+=>JS:  	Create functionality of the Game with Javascript
+	
+ 	1.Generate a secret code, using a for loop.
 
 	2.Player's choice of code breaking, addEventListener to each colour button.
  
