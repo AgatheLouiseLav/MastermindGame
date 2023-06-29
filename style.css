@@ -24,6 +24,10 @@ body{
 	background-color: var(--clr-dark-blue);
 }
 
+nav{
+	display: none;
+}
+
 main{
 	margin: 40px 40px 0 40px;
 	gap:10px;
@@ -39,7 +43,6 @@ section{
 	overflow-y: scroll;
 	scroll-behavior: smooth;
 	-ms-overflow-style: none;
-	/*border:2px solid green;*/
 }
 
 section::-webkit-scrollbar { 
@@ -72,6 +75,7 @@ p{
 	font-family: 'Roboto', sans-serif;
 	line-height: 30px;
 }
+
 h2{
 font-family: 'Roboto', sans-serif;
 }
@@ -208,3 +212,4 @@ footer{
 	position: fixed;
 	bottom:0;
 }
+
