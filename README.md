@@ -8,6 +8,8 @@ The secret code can have many times the same colour!!!
 
 <h3>Pseudo code + Technology used</h3>
 
+I began by making 
+
 =>HTML: Divide the screen in half, the left side shows the player's choice of code and the right side gives reminder of the feedback colour code and the colour choice 	/ button for the player to click on and a play button.
  
 	1.Left side: board side with 10 place of guesses code,
@@ -23,7 +25,7 @@ The secret code can have many times the same colour!!!
 
 	BONUS: make it mobile responsive.
 
-=>JS:  	Create functionality of the Game with Javascript
+=>JavaScript:  	Create functionality of the Game with Javascript
 	
  	1.Generate a secret code, using a for loop.
 
