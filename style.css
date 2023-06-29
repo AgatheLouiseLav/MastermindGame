@@ -24,10 +24,6 @@ body{
 	background-color: var(--clr-dark-blue);
 }
 
-nav{
-	display: none;
-}
-
 main{
 	margin: 40px 40px 0 40px;
 	gap:10px;
