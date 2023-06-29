@@ -51,6 +51,7 @@ function initial() {
   clearBoard();
   clearMessage();
   ableButton();
+  console.log(secretCombo)
 };
 
 //Generate a random color code
@@ -108,7 +109,7 @@ function compareGuess() {
     winnerMessage();
   } ;
 
-  if(PLAYER_GUESS.guess10.length === 4) {
+  if(PLAYER_GUESS.guess10.length === 4 && !perfectMatches) {
     disableButton();
     loseMessage();
   };
