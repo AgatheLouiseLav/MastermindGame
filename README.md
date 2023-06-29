@@ -17,7 +17,11 @@ The secret code can have many times the same colour!!!
 
 =>CSS: 	Make the UI simple and enjoyable to use,
 
-	BONUS: make it mobile responsive,
+	Create a scrollable section for the board, but the page with stay still,
+
+  	Use 6 different colors for thw color Choice,
+
+	BONUS: make it mobile responsive.
 
 =>JS:  	Create functionality of the Game with Javascript
 	
@@ -56,4 +60,4 @@ The secret code can have many times the same colour!!!
 
 <a href="https://agathelouiselav.github.io/MastermindGame/">Link to play Mastermind</a>
 
-
+The BONUS are in progress
